@@ -1,5 +1,3 @@
-package com.mouredev.weeklychallenge2022
-
 /*
  * Reto #3
  * ¿ES UN NÚMERO PRIMO?
@@ -19,28 +17,34 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-fun main() {
+let primeNumbers = [];
 
-    (1..100).forEach { number ->
-        if (isPrime(number)) {
-            println(number)
+// Función que verifica si un número es primo
+// Número primo: divisible exactamente por 1 y por sí mismo
+// Número compuesto: tiene más de dos factores
+// 1 no es ni primo ni compuesto
+
+function isPrime(num) {
+    if (num <= 1) {
+        return false;
+    }
+    for (let i = 2; i <= Math.sqrt(num); i++) {
+        if (num % i === 0) {
+            return false;
+        }
+    }
+    return true;
+}
+
+// Función que captura los números primos en el array "primeNumbers"
+function findPrimes(limit) {
+    for (let num = 2; num <= limit; num++) {
+        if (isPrime(num)) {
+            primeNumbers.push(num);
         }
     }
 }
 
-private fun isPrime(number: Int): Boolean {
-
-    if (number < 2) {
-        return false
-    }
-
-    for (i in 2 until number) {
-        if (number % i == 0) {
-            return false
-        }
-    }
-
-    return true
-}
-
-
+// Llamar a la función con un límite
+findPrimes(100);
+console.log(primeNumbers);
